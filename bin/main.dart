@@ -5,7 +5,6 @@ import 'package:alfred_workflow/alfred_workflow.dart'
     show
         AlfredItem,
         AlfredItemIcon,
-        AlfredItemIconType,
         AlfredItemText,
         AlfredItems,
         AlfredWorkflow;
@@ -84,19 +83,16 @@ Future<void> _performSearch(String query) async {
 
         return AlfredItem(
           uid: result.objectID,
-          title: result.name,
+          title: result.code,
           subtitle: result.description,
           arg: result.code,
+          match: '${result.name} ${result.description}',
           text: AlfredItemText(
             copy: result.code,
-            largeType: result.description,
+            largeType: result.code,
           ),
-          icon: image != null
-              ? AlfredItemIcon(
-                  path: image.absolute.path,
-                  type: AlfredItemIconType.fileicon,
-                )
-              : null,
+          icon:
+              image != null ? AlfredItemIcon(path: image.absolute.path) : null,
           valid: true,
         );
       }).toList()),
