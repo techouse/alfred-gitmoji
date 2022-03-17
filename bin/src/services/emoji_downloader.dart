@@ -1,6 +1,6 @@
 import 'dart:io' show Directory, File, Platform;
 
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http show get, Response;
 import 'package:path/path.dart' as path show dirname, join;
 
 class EmojiDownloader {
