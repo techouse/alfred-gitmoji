@@ -99,23 +99,13 @@ Future<void> _performSearch(String query) async {
     );
     workflow.addItems(items.items);
   } else {
-    final Uri url = Uri.https(
-      'www.google.com',
-      '/search',
-      {'q': 'gitmoji $query'},
-    );
-
     workflow.addItem(
       AlfredItem(
-        title: 'No matching answers found',
-        subtitle: 'Shall I try and search Google?',
-        arg: url.toString(),
-        text: AlfredItemText(
-          copy: url.toString(),
+        title: 'No matching Gitmojis found',
+        icon: AlfredItemIcon(
+          path: 'question.png',
         ),
-        quickLookUrl: url.toString(),
-        icon: AlfredItemIcon(path: 'google.png'),
-        valid: true,
+        valid: false,
       ),
     );
   }
