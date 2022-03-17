@@ -28,4 +28,4 @@ Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your
 ### Note
 
 Gitmoji index taken from [carloscuesta/gitmoji](https://github.com/carloscuesta/gitmoji/blob/master/src/data/gitmojis.json).
-The lightning fast search is powered by [Algolia](https://www.algolia.com) using the _same_ index as the official [Vue.js](https://v3.vuejs.org/) website.
+The lightning fast search is powered by [Algolia](https://www.algolia.com) using the _same_ index as [gimoji.dev](https://gitmoji.dev).
