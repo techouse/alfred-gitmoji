@@ -91,8 +91,9 @@ Future<void> _performSearch(String query) async {
             copy: result.code,
             largeType: result.code,
           ),
-          icon:
-              image != null ? AlfredItemIcon(path: image.absolute.path) : null,
+          icon: AlfredItemIcon(
+            path: image != null ? image.absolute.path : 'question.png',
+          ),
           valid: true,
         );
       }).toList()),
@@ -101,7 +102,7 @@ Future<void> _performSearch(String query) async {
   } else {
     workflow.addItem(
       AlfredItem(
-        title: 'No matching Gitmojis found',
+        title: 'No matching gitmoji found',
         icon: AlfredItemIcon(
           path: 'question.png',
         ),
