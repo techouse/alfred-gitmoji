@@ -14,7 +14,7 @@ import 'package:algolia/algolia.dart' show AlgoliaQuerySnapshot;
 import 'package:args/args.dart' show ArgParser, ArgResults;
 import 'package:stash/stash_api.dart' show CreatedExpiryPolicy;
 
-import 'src/constants/config.dart';
+import 'src/constants/config.dart' show Config;
 import 'src/models/search_result.dart' show SearchResult;
 import 'src/services/algolia_search.dart' show AlgoliaSearch;
 import 'src/services/emoji_downloader.dart' show EmojiDownloader;
