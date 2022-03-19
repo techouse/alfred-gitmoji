@@ -35,7 +35,7 @@ final AlfredUpdater updater = AlfredUpdater(
   updateInterval: Duration(days: 7),
 );
 bool verbose = false;
-bool upgrade = false;
+bool update = false;
 
 void main(List<String> arguments) async {
   try {
@@ -46,12 +46,12 @@ void main(List<String> arguments) async {
     final ArgParser parser = ArgParser()
       ..addOption('query', abbr: 'q', defaultsTo: '')
       ..addFlag('verbose', abbr: 'v', defaultsTo: false)
-      ..addFlag('upgrade', abbr: 'u', defaultsTo: false);
+      ..addFlag('update', abbr: 'u', defaultsTo: false);
     final ArgResults args = parser.parse(arguments);
 
-    upgrade = args['upgrade'];
-    if (upgrade) {
-      stdout.writeln('Upgrading workflow...');
+    update = args['update'];
+    if (update) {
+      stdout.writeln('Updating workflow...');
 
       return await updater.update();
     }
@@ -78,9 +78,9 @@ void main(List<String> arguments) async {
     workflow.addItem(AlfredItem(title: err.toString()));
     if (verbose) rethrow;
   } finally {
-    if (!upgrade) {
+    if (!update) {
       if (await updater.updateAvailable()) {
-        workflow.run(addToBeginning: upgradeItem);
+        workflow.run(addToBeginning: updateItem);
       } else {
         workflow.run();
       }
@@ -88,7 +88,7 @@ void main(List<String> arguments) async {
   }
 }
 
-const upgradeItem = AlfredItem(
+const updateItem = AlfredItem(
   title: 'Auto-Update available!',
   subtitle: 'Press <enter> to auto-update to a new version of this workflow.',
   arg: 'update:workflow',
