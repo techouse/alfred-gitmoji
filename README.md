@@ -27,5 +27,7 @@ Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your
 
 ### Note
 
+Kudos to [Quilljou/alfred-gitmoji-workflow](https://github.com/Quilljou/alfred-gitmoji-workflow) for the initial inspiration.
+
 The gitmoji index was built from from [carloscuesta/gitmoji](https://github.com/carloscuesta/gitmoji/blob/master/src/data/gitmojis.json). The displayed emoji images are from [joypixels/emoji-assets](https://github.com/joypixels/emoji-assets/tree/master/png/128).
 The lightning fast search is powered by [Algolia](https://www.algolia.com) using the _same_ index as [gimoji.dev](https://gitmoji.dev).
