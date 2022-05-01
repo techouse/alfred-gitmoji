@@ -5,7 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/techouse/alfred-gitmoji.svg)
 
 
-Search for [Gitmojis](https://gitmoji.dev) using [Alfred](https://www.alfredapp.com/).
+Search for [Gitm:stuck_out_tongue_winking_eye:jis](https://gitmoji.dev) using [Alfred](https://www.alfredapp.com/).
 
 ![demo](demo.gif)
 
