@@ -1,4 +1,5 @@
-import 'package:algolia/algolia.dart' show Algolia, AlgoliaQuerySnapshot;
+import 'package:algolia/algolia.dart'
+    show Algolia, AlgoliaQuery, AlgoliaQuerySnapshot;
 
 import '../constants/config.dart';
 import '../models/search_result.dart';
@@ -11,12 +12,14 @@ class AlgoliaSearch {
     apiKey: Config.algoliaSearchOnlyApiKey,
   );
 
-  static Future<AlgoliaQuerySnapshot> query(String queryString) async =>
-      _algolia.instance
-          .index(Config.algoliaSearchIndex)
-          .query(queryString)
-          .setAttributesToRetrieve(SearchResult.attributesToRetrieve)
-          .setPage(0)
-          .setHitsPerPage(20)
-          .getObjects();
+  static Future<AlgoliaQuerySnapshot> query(String queryString) async {
+    final AlgoliaQuery query = _algolia.instance
+        .index(Config.algoliaSearchIndex)
+        .query(queryString)
+        .setAttributesToRetrieve(SearchResult.attributesToRetrieve)
+        .setPage(0)
+        .setHitsPerPage(20);
+
+    return await query.getObjects();
+  }
 }
