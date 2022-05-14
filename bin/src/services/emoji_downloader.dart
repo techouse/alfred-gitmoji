@@ -35,7 +35,7 @@ class EmojiDownloader {
       );
 
       if (response.statusCode < 400) {
-        file.writeAsBytes(response.bodyBytes);
+        await file.writeAsBytes(response.bodyBytes);
       } else {
         return null;
       }
