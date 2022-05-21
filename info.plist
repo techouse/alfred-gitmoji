@@ -159,7 +159,7 @@
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<true/>
+				<false/>
 				<key>queuedelaymode</key>
 				<integer>2</integer>
 				<key>queuemode</key>
@@ -251,7 +251,7 @@
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.1.3</string>
+	<string>1.1.4</string>
 	<key>webaddress</key>
 	<string>https://github.com/techouse</string>
 </dict>
