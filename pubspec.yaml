@@ -4,7 +4,7 @@ description: Search for gitmojis and copy them to the clipboard easily.
 # Prevent accidental publishing to pub.dev.
 publish_to: 'none'
 
-version: 1.1.5
+version: 1.1.6
 
 environment:
   sdk: '>=2.17.0 <3.0.0'
@@ -16,6 +16,7 @@ dependencies:
   alfred_workflow: ^0.2.0
   http: ^0.13.4
   path: ^1.8.1
+  stash: ^4.3.1
 
 dev_dependencies:
   lints: ^2.0.0
