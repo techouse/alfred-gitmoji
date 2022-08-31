@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'search_result.g.dart';
+
+@JsonSerializable()
 class SearchResult {
   const SearchResult({
     required this.objectID,
@@ -26,21 +31,8 @@ class SearchResult {
     'semver',
   ];
 
-  SearchResult.fromJson(Map<String, dynamic> json)
-      : objectID = json['objectID'] as String,
-        emoji = json['emoji'] as String,
-        entity = json['entity'] as String,
-        code = json['code'] as String,
-        description = json['description'] as String,
-        name = json['name'] as String,
-        semver = json['semver'] as String?;
+  factory SearchResult.fromJson(Map<String, dynamic> json) =>
+      _$SearchResultFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        'emoji': emoji,
-        'entity': entity,
-        'code': code,
-        'description': description,
-        'name': name,
-        'semver': semver,
-      };
+  Map<String, dynamic> toJson() => _$SearchResultToJson(this);
 }

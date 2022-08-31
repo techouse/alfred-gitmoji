@@ -1,7 +1,7 @@
 class Config {
   Config._();
 
-  static const String version = '1.1.6';
+  static const String version = '1.1.7';
   static final Uri githubRepositoryUrl =
       Uri.https('github.com', '/techouse/alfred-gitmoji');
   static const String algoliaApplicationId = 'WODHKE4WZG';
