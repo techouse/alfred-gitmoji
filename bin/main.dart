@@ -1,5 +1,4 @@
 import 'dart:io' show File, exitCode, stdout;
-import 'dart:convert' show HtmlEscape;
 
 import 'package:alfred_workflow/alfred_workflow.dart'
     show
@@ -12,141 +11,69 @@ import 'package:alfred_workflow/alfred_workflow.dart'
         AlfredWorkflow;
 import 'package:algolia/algolia.dart' show AlgoliaQuerySnapshot;
 import 'package:args/args.dart' show ArgParser, ArgResults;
+import 'package:cli_script/cli_script.dart';
 import 'package:stash/stash_api.dart' show CreatedExpiryPolicy;
 
-import 'src/constants/config.dart' show Config;
+import 'src/env/env.dart' show Env;
 import 'src/models/search_result.dart' show SearchResult;
 import 'src/services/algolia_search.dart' show AlgoliaSearch;
 import 'src/services/emoji_downloader.dart' show EmojiDownloader;
 
-const HtmlEscape htmlEscape = HtmlEscape();
-final AlfredWorkflow workflow = AlfredWorkflow(
-  cache: AlfredCache<AlfredItems>(
-    fromEncodable: (Map<String, dynamic> json) => AlfredItems.fromJson(json),
-    maxEntries: 1024,
-    expiryPolicy: const CreatedExpiryPolicy(
-      Duration(days: 7),
-    ),
-  ),
-);
-final AlfredUpdater updater = AlfredUpdater(
-  githubRepositoryUrl: Config.githubRepositoryUrl,
-  currentVersion: Config.version,
-  updateInterval: Duration(days: 7),
-);
-bool verbose = false;
-bool update = false;
+part 'main_helpers.dart';
 
-void main(List<String> arguments) async {
-  try {
-    exitCode = 0;
+bool _verbose = false;
+bool _update = false;
 
-    workflow.clearItems();
+void main(List<String> arguments) {
+  wrapMain(() async {
+    try {
+      exitCode = 0;
 
-    final ArgParser parser = ArgParser()
-      ..addOption('query', abbr: 'q', defaultsTo: '')
-      ..addFlag('verbose', abbr: 'v', defaultsTo: false)
-      ..addFlag('update', abbr: 'u', defaultsTo: false);
-    final ArgResults args = parser.parse(arguments);
+      _workflow.clearItems();
 
-    update = args['update'];
-    if (update) {
-      stdout.writeln('Updating workflow...');
+      final ArgParser parser = ArgParser()
+        ..addOption('query', abbr: 'q', defaultsTo: '')
+        ..addFlag('verbose', abbr: 'v', defaultsTo: false)
+        ..addFlag('update', abbr: 'u', defaultsTo: false);
+      final ArgResults args = parser.parse(arguments);
 
-      return await updater.update();
-    }
+      _update = args['update'];
+      if (_update) {
+        stdout.writeln('Updating workflow...');
 
-    verbose = args['verbose'];
-
-    final String query =
-        args['query'].replaceAll(RegExp(r'\s+'), ' ').trim().toLowerCase();
-
-    if (verbose) stdout.writeln('Query: "$query"');
-
-    if (query.isEmpty) {
-      _showPlaceholder();
-    } else {
-      workflow.cacheKey = query;
-      if (await workflow.getItems() == null) {
-        await _performSearch(query);
+        return await _updater.update();
       }
-    }
-  } on FormatException catch (err) {
-    exitCode = 2;
-    workflow.addItem(AlfredItem(title: err.toString()));
-  } catch (err) {
-    exitCode = 1;
-    workflow.addItem(AlfredItem(title: err.toString()));
-    if (verbose) rethrow;
-  } finally {
-    if (!update) {
-      if (await updater.updateAvailable()) {
-        workflow.run(addToBeginning: updateItem);
+
+      _verbose = args['verbose'];
+
+      final String query =
+          args['query'].replaceAll(RegExp(r'\s+'), ' ').trim().toLowerCase();
+
+      if (_verbose) stdout.writeln('Query: "$query"');
+
+      if (query.isEmpty) {
+        _showPlaceholder();
       } else {
-        workflow.run();
+        _workflow.cacheKey = query;
+        if (await _workflow.getItems() == null) {
+          await _performSearch(query);
+        }
+      }
+    } on FormatException catch (err) {
+      exitCode = 2;
+      _workflow.addItem(AlfredItem(title: err.toString()));
+    } catch (err) {
+      exitCode = 1;
+      _workflow.addItem(AlfredItem(title: err.toString()));
+      if (_verbose) rethrow;
+    } finally {
+      if (!_update) {
+        if (await _updater.updateAvailable()) {
+          _workflow.run(addToBeginning: updateItem);
+        } else {
+          _workflow.run();
+        }
       }
     }
-  }
-}
-
-const updateItem = AlfredItem(
-  title: 'Auto-Update available!',
-  subtitle: 'Press <enter> to auto-update to a new version of this workflow.',
-  arg: 'update:workflow',
-  match:
-      'Auto-Update available! Press <enter> to auto-update to a new version of this workflow.',
-  icon: AlfredItemIcon(path: 'alfredhatcog.png'),
-  valid: true,
-);
-
-void _showPlaceholder() {
-  workflow.addItem(
-    const AlfredItem(
-      title: 'Search for gitmojis ...',
-      icon: AlfredItemIcon(path: 'icon.png'),
-    ),
-  );
-}
-
-Future<void> _performSearch(String query) async {
-  final AlgoliaQuerySnapshot snapshot = await AlgoliaSearch.query(query);
-
-  if (snapshot.nbHits > 0) {
-    final AlfredItems items = AlfredItems(
-      await Future.wait(snapshot.hits
-          .map((snapshot) => SearchResult.fromJson(snapshot.data))
-          .map((result) async {
-        final File? image = await EmojiDownloader(
-          emoji: result.emoji,
-        ).downloadImage();
-
-        return AlfredItem(
-          uid: result.objectID,
-          title: result.code,
-          subtitle: result.description,
-          arg: result.code,
-          match: '${result.name} ${result.description}',
-          text: AlfredItemText(
-            copy: result.code,
-            largeType: result.code,
-          ),
-          icon: AlfredItemIcon(
-            path: image != null ? image.absolute.path : 'question.png',
-          ),
-          valid: true,
-        );
-      }).toList()),
-    );
-    workflow.addItems(items.items);
-  } else {
-    workflow.addItem(
-      AlfredItem(
-        title: 'No matching gitmoji found',
-        icon: AlfredItemIcon(
-          path: 'question.png',
-        ),
-        valid: false,
-      ),
-    );
-  }
+  });
 }

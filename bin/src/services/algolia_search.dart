@@ -1,20 +1,20 @@
 import 'package:algolia/algolia.dart'
     show Algolia, AlgoliaQuery, AlgoliaQuerySnapshot;
 
-import '../constants/config.dart';
+import '../env/env.dart';
 import '../models/search_result.dart';
 
 class AlgoliaSearch {
   AlgoliaSearch._();
 
   static final Algolia _algolia = Algolia.init(
-    applicationId: Config.algoliaApplicationId,
-    apiKey: Config.algoliaSearchOnlyApiKey,
+    applicationId: Env.algoliaApplicationId,
+    apiKey: Env.algoliaSearchOnlyApiKey,
   );
 
   static Future<AlgoliaQuerySnapshot> query(String queryString) async {
     final AlgoliaQuery query = _algolia.instance
-        .index(Config.algoliaSearchIndex)
+        .index(Env.algoliaSearchIndex)
         .query(queryString)
         .setAttributesToRetrieve(SearchResult.attributesToRetrieve)
         .setPage(0)
