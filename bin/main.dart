@@ -15,6 +15,7 @@ import 'package:cli_script/cli_script.dart';
 import 'package:stash/stash_api.dart' show CreatedExpiryPolicy;
 
 import 'src/env/env.dart' show Env;
+import 'src/extensions/string_helpers.dart';
 import 'src/models/search_result.dart' show SearchResult;
 import 'src/services/algolia_search.dart' show AlgoliaSearch;
 import 'src/services/emoji_downloader.dart' show EmojiDownloader;
@@ -51,13 +52,9 @@ void main(List<String> arguments) {
 
       if (_verbose) stdout.writeln('Query: "$query"');
 
-      if (query.isEmpty) {
-        _showPlaceholder();
-      } else {
-        _workflow.cacheKey = query;
-        if (await _workflow.getItems() == null) {
-          await _performSearch(query);
-        }
+      _workflow.cacheKey = query.isNotEmpty ? query : 'ALL_GITMOJIS'.md5hex;
+      if (await _workflow.getItems() == null) {
+        await _performSearch(query.isNotEmpty ? query : '');
       }
     } on FormatException catch (err) {
       exitCode = 2;

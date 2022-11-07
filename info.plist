@@ -112,6 +112,8 @@
 				</array>
 				<key>elselabel</key>
 				<string>Copy to Clipboard</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -147,11 +149,11 @@
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
@@ -215,43 +217,45 @@
 		<key>B1E797A8-B1C1-4A07-A340-67D2AC741B3C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>845</integer>
+			<real>845</real>
 			<key>ypos</key>
-			<integer>205</integer>
+			<real>205</real>
 		</dict>
 		<key>D6793604-058B-4867-A1EA-BF8C2B8B3733</key>
 		<dict>
 			<key>xpos</key>
-			<integer>580</integer>
+			<real>580</real>
 			<key>ypos</key>
-			<integer>395</integer>
+			<real>395</real>
 		</dict>
 		<key>E50F9D21-04DF-4185-A2CB-40B7111F31C0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>580</integer>
+			<real>580</real>
 			<key>ypos</key>
-			<integer>105</integer>
+			<real>105</real>
 		</dict>
 		<key>F404D930-F17D-43D0-B06B-28D6A000A93F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>845</integer>
+			<real>845</real>
 			<key>ypos</key>
-			<integer>10</integer>
+			<real>15</real>
 		</dict>
 		<key>F6F9BD70-3218-4D80-A4D2-63C6A77142CA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>325</integer>
+			<real>325</real>
 			<key>ypos</key>
-			<integer>220</integer>
+			<real>220</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.1.8</string>
+	<string>1.1.9</string>
 	<key>webaddress</key>
 	<string>https://github.com/techouse</string>
 </dict>

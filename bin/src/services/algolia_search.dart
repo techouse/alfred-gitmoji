@@ -18,7 +18,7 @@ class AlgoliaSearch {
         .query(queryString)
         .setAttributesToRetrieve(SearchResult.attributesToRetrieve)
         .setPage(0)
-        .setHitsPerPage(20);
+        .setHitsPerPage(100);
 
     return await query.getObjects();
   }
