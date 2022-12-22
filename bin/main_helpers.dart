@@ -8,7 +8,7 @@ final AlfredWorkflow _workflow = AlfredWorkflow(
       Duration(days: 7),
     ),
   ),
-);
+)..disableAlfredSmartResultOrdering = true;
 
 final AlfredUpdater _updater = AlfredUpdater(
   githubRepositoryUrl: Uri.parse(Env.githubRepositoryUrl),
@@ -21,7 +21,7 @@ const updateItem = AlfredItem(
   subtitle: 'Press <enter> to auto-update to a new version of this workflow.',
   arg: 'update:workflow',
   match:
-  'Auto-Update available! Press <enter> to auto-update to a new version of this workflow.',
+      'Auto-Update available! Press <enter> to auto-update to a new version of this workflow.',
   icon: AlfredItemIcon(path: 'alfredhatcog.png'),
   valid: true,
 );
