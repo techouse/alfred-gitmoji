@@ -75,7 +75,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./gm -u</string>
+				<string>arch -x86_64 ./gm -u</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -169,7 +169,7 @@
 				<key>runningsubtext</key>
 				<string>Fetching gitmojis ...</string>
 				<key>script</key>
-				<string>./gm -q "{query}"</string>
+				<string>arch -x86_64 ./gm -q "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -255,7 +255,7 @@
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.1.10</string>
+	<string>1.1.11</string>
 	<key>webaddress</key>
 	<string>https://github.com/techouse</string>
 </dict>

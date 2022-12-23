@@ -26,15 +26,6 @@ const updateItem = AlfredItem(
   valid: true,
 );
 
-void _showPlaceholder() {
-  _workflow.addItem(
-    const AlfredItem(
-      title: 'Search for gitmojis ...',
-      icon: AlfredItemIcon(path: 'icon.png'),
-    ),
-  );
-}
-
 Future<void> _performSearch(String query) async {
   final AlgoliaQuerySnapshot snapshot = await AlgoliaSearch.query(query);
 
