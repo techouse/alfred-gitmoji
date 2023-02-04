@@ -26,9 +26,18 @@ gm update
 
 Either press `⌘Y` to Quick Look the result, or press `<enter>` copy it to your clipboard.
 
-### Note
+### Modifier keys
+
+- <kbd>return</kbd> (↵): Copy the code of the selected gitmoji (e.g. `:bug:`) directly to your front-most application.
+- <kbd>option+return</kbd> (⌥↵): Copy the symbol of the selected emoji) (e.g. "🐛") to your clipboard.
+- <kbd>ctrl+return</kbd> (⌃↵): Copy the hexadecimal HTML Entity of the selected emoji) (e.g. `&#x1f41b;`) to your clipboard.
+- <kbd>shift+return</kbd> (⇧↵): Copy the Python source of the selected emoji) (e.g. `u"\U0001F41B"`) to your clipboard.
+- <kbd>shift+ctrl+return</kbd> (⇧⌃↵): Copy the formal Unicode notation of the selected emoji) (e.g. `U+1F41B`) to your clipboard.
+- <kbd>cmd+return</kbd> (⌘↵): Copy the code of the selected emoji (e.g. `:bug:`) to your clipboard.
+
+### Notes
 
 Kudos to [leolabs/alfred-gitmoji](https://github.com/leolabs/alfred-gitmoji) for the initial inspiration.
 
-The gitmoji index was built from from [carloscuesta/gitmoji](https://github.com/carloscuesta/gitmoji). The displayed emoji images are from [joypixels/emoji-assets](https://github.com/joypixels/emoji-assets).
+The gitmoji index was built from [carloscuesta/gitmoji](https://github.com/carloscuesta/gitmoji). The displayed emoji images are from [joypixels/emoji-assets](https://github.com/joypixels/emoji-assets).
 The lightning fast search is powered by [Algolia](https://www.algolia.com) using the _same_ index as [gimoji.dev](https://gitmoji.dev).

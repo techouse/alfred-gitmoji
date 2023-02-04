@@ -47,11 +47,51 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
+				<string>44CEADC9-23D4-472C-84F9-55637BFAC488</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>546B52EC-9B8F-40FD-8728-AD98300B4DAC</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>70497994-C3C7-4F83-A974-EF0A7CC2ABF8</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>DD00FF71-F5E3-45DF-89C1-591B52134C10</string>
+				<key>modifiers</key>
+				<integer>393216</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>D6793604-058B-4867-A1EA-BF8C2B8B3733</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Only copy to clipboard</string>
+				<string>Copy "{query}" to clipboard</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -67,29 +107,6 @@
 	<string>Gitmoji</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>arch -x86_64 ./gm -u</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>F404D930-F17D-43D0-B06B-28D6A000A93F</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -121,6 +138,48 @@
 			<string>E50F9D21-04DF-4185-A2CB-40B7111F31C0</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>arch -x86_64 ./gm -u</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F404D930-F17D-43D0-B06B-28D6A000A93F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>44CEADC9-23D4-472C-84F9-55637BFAC488</string>
+			<key>version</key>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -205,40 +264,146 @@
 			<key>type</key>
 			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
+			<string>546B52EC-9B8F-40FD-8728-AD98300B4DAC</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>70497994-C3C7-4F83-A974-EF0A7CC2ABF8</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>DD00FF71-F5E3-45DF-89C1-591B52134C10</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
 			<string>D6793604-058B-4867-A1EA-BF8C2B8B3733</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string># Gitmoji Workflow for Alfred
+
+Search for Gitmojis using Alfred.
+
+## Usage
+
+Just type `gm` followed by your search query.
+
+```
+gm update
+```
+
+Either press `⌘Y` to Quick Look the result, or press `&lt;enter&gt;` copy it to your clipboard.
+
+### Modifier keys
+
+- &lt;kbd&gt;return&lt;/kbd&gt; (↵): Copy the code of the selected gitmoji (e.g. `:bug:`) directly to your front-most application.
+- &lt;kbd&gt;option+return&lt;/kbd&gt; (⌥↵): Copy the symbol of the selected emoji) (e.g. "🐛") to your clipboard.
+- &lt;kbd&gt;ctrl+return&lt;/kbd&gt; (⌃↵): Copy the hexadecimal HTML Entity of the selected emoji) (e.g. `&amp;#x1f41b;`) to your clipboard.
+- &lt;kbd&gt;shift+return&lt;/kbd&gt; (⇧↵): Copy the Python source of the selected emoji) (e.g. `u"\U0001F41B"`) to your clipboard.
+- &lt;kbd&gt;shift+ctrl+return&lt;/kbd&gt; (⇧⌃↵): Copy the formal Unicode notation of the selected emoji) (e.g. `U+1F41B`) to your clipboard.
+- &lt;kbd&gt;cmd+return&lt;/kbd&gt; (⌘↵): Copy the code of the selected emoji (e.g. `:bug:`) to your clipboard.</string>
 	<key>uidata</key>
 	<dict>
+		<key>44CEADC9-23D4-472C-84F9-55637BFAC488</key>
+		<dict>
+			<key>xpos</key>
+			<real>850</real>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+		<key>546B52EC-9B8F-40FD-8728-AD98300B4DAC</key>
+		<dict>
+			<key>xpos</key>
+			<real>850</real>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>70497994-C3C7-4F83-A974-EF0A7CC2ABF8</key>
+		<dict>
+			<key>xpos</key>
+			<real>850</real>
+			<key>ypos</key>
+			<real>375</real>
+		</dict>
 		<key>B1E797A8-B1C1-4A07-A340-67D2AC741B3C</key>
 		<dict>
 			<key>xpos</key>
-			<real>845</real>
+			<real>1155</real>
 			<key>ypos</key>
-			<real>205</real>
+			<real>170</real>
 		</dict>
 		<key>D6793604-058B-4867-A1EA-BF8C2B8B3733</key>
 		<dict>
 			<key>xpos</key>
-			<real>580</real>
+			<real>860</real>
 			<key>ypos</key>
-			<real>395</real>
+			<real>635</real>
+		</dict>
+		<key>DD00FF71-F5E3-45DF-89C1-591B52134C10</key>
+		<dict>
+			<key>xpos</key>
+			<real>855</real>
+			<key>ypos</key>
+			<real>505</real>
 		</dict>
 		<key>E50F9D21-04DF-4185-A2CB-40B7111F31C0</key>
 		<dict>
 			<key>xpos</key>
-			<real>580</real>
+			<real>845</real>
 			<key>ypos</key>
-			<real>105</real>
+			<real>15</real>
 		</dict>
 		<key>F404D930-F17D-43D0-B06B-28D6A000A93F</key>
 		<dict>
 			<key>xpos</key>
-			<real>845</real>
+			<real>1150</real>
 			<key>ypos</key>
 			<real>15</real>
 		</dict>
@@ -252,10 +417,8 @@
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array/>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>1.1.11</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/techouse</string>
 </dict>

@@ -1,14 +1,7 @@
 import 'dart:io' show File, exitCode, stdout;
 
 import 'package:alfred_workflow/alfred_workflow.dart'
-    show
-        AlfredCache,
-        AlfredItem,
-        AlfredItemIcon,
-        AlfredItemText,
-        AlfredItems,
-        AlfredUpdater,
-        AlfredWorkflow;
+    show AlfredCache, AlfredItem, AlfredItemIcon, AlfredItemMod, AlfredItemModKey, AlfredItemText, AlfredItems, AlfredUpdater, AlfredWorkflow;
 import 'package:algolia/algolia.dart' show AlgoliaQuerySnapshot;
 import 'package:args/args.dart' show ArgParser, ArgResults;
 import 'package:cli_script/cli_script.dart';

@@ -51,6 +51,41 @@ Future<void> _performSearch(String query) async {
           icon: AlfredItemIcon(
             path: image != null ? image.absolute.path : 'question.png',
           ),
+          mods: {
+            {AlfredItemModKey.alt}: AlfredItemMod(
+              subtitle: 'Copy "${result.emoji}" to clipboard',
+              arg: result.emoji,
+              icon:
+                  AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+            ),
+            {AlfredItemModKey.shift}: AlfredItemMod(
+              subtitle: 'Copy Python source of "${result.emoji}" to clipboard',
+              arg: 'u"\\U000'
+                  '${result.emoji.runes.first.toRadixString(16).toUpperCase()}'
+                  '${result.emoji.runes.toList().sublist(1).map(
+                        (int i) => '\\u${i.toRadixString(16).toUpperCase()}',
+                      ).join()}"',
+              icon:
+                  AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+            ),
+            {AlfredItemModKey.ctrl}: AlfredItemMod(
+              subtitle: 'Copy HTML Entity of "${result.emoji}" to clipboard',
+              arg: result.emoji.runes
+                  .map((int i) => '&#x${i.toRadixString(16)};')
+                  .join(),
+              icon:
+                  AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+            ),
+            {AlfredItemModKey.ctrl, AlfredItemModKey.shift}: AlfredItemMod(
+              subtitle:
+                  'Copy formal Unicode notation of "${result.emoji}" to clipboard',
+              arg: result.emoji.runes
+                  .map((int i) => 'U+${i.toRadixString(16).toUpperCase()}')
+                  .join(', '),
+              icon:
+                  AlfredItemIcon(path: image?.absolute.path ?? 'question.png'),
+            ),
+          },
           valid: true,
         );
       }).toList()),
