@@ -147,7 +147,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>arch -x86_64 ./gm -u</string>
+				<string>arch -x86_64 ./workflow -u</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -228,7 +228,7 @@
 				<key>runningsubtext</key>
 				<string>Fetching gitmojis ...</string>
 				<key>script</key>
-				<string>arch -x86_64 ./gm -q "{query}"</string>
+				<string>arch -x86_64 ./workflow -q "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -418,8 +418,8 @@ Either press `⌘Y` to Quick Look the result, or press `&lt;enter&gt;` copy it t
 	<key>userconfigurationconfig</key>
 	<array/>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string></string>
 	<key>webaddress</key>
-	<string>https://github.com/techouse</string>
+	<string></string>
 </dict>
 </plist>
