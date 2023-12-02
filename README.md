@@ -4,6 +4,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/techouse/alfred-gitmoji/total.svg)
 ![GitHub](https://img.shields.io/github/license/techouse/alfred-gitmoji.svg)
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat)](https://gitmoji.dev)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/techouse)](https://github.com/sponsors/techouse)
 
 
 Search for [Gitm:stuck_out_tongue_winking_eye:jis](https://gitmoji.dev) using [Alfred](https://www.alfredapp.com/).
