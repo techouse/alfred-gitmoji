@@ -1,25 +1,26 @@
-import 'package:algolia/algolia.dart'
-    show Algolia, AlgoliaQuery, AlgoliaQuerySnapshot;
+import 'package:algoliasearch/algoliasearch_lite.dart';
 
 import '../env/env.dart';
 import '../models/search_result.dart';
 
 class AlgoliaSearch {
-  AlgoliaSearch._();
+  const AlgoliaSearch._();
 
-  static final Algolia _algolia = Algolia.init(
-    applicationId: Env.algoliaApplicationId,
+  static final SearchClient _client = SearchClient(
+    appId: Env.algoliaApplicationId,
     apiKey: Env.algoliaSearchOnlyApiKey,
   );
 
-  static Future<AlgoliaQuerySnapshot> query(String queryString) async {
-    final AlgoliaQuery query = _algolia.instance
-        .index(Env.algoliaSearchIndex)
-        .query(queryString)
-        .setAttributesToRetrieve(SearchResult.attributesToRetrieve)
-        .setPage(0)
-        .setHitsPerPage(100);
+  static Future<SearchResponse> query(String queryString) =>
+      _client.searchIndex(
+        request: SearchForHits(
+          indexName: Env.algoliaSearchIndex,
+          query: queryString,
+          attributesToRetrieve: SearchResult.attributesToRetrieve,
+          page: 0,
+          hitsPerPage: 100,
+        ),
+      );
 
-    return await query.getObjects();
-  }
+  static dispose() => _client.dispose();
 }
