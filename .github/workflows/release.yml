@@ -22,6 +22,7 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       runs-on: ${{ matrix.os }}
+    secrets: inherit
   github_release:
     name: "Github Release"
     needs: build
