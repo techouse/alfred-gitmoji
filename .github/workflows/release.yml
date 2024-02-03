@@ -18,7 +18,6 @@ jobs:
       matrix:
         os: [macos-14, macos-12]
       fail-fast: true
-      max-parallel: 1
     uses: ./.github/workflows/build.yml
     with:
       runs-on: ${{ matrix.os }}
