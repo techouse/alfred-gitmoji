@@ -19,8 +19,6 @@ jobs:
     name: "Build"
     runs-on: "${{ inputs.runs-on }}"
     environment: build
-    permissions:
-      contents: write
     env:
       GITHUB_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}
     steps:
