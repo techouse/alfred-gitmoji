@@ -14,7 +14,7 @@ permissions: read-all
 jobs:
   publish:
     name: "Build"
-    runs-on: macos-latest
+    runs-on: macos-14
     environment: build
     permissions:
       contents: write
