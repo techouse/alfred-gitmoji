@@ -26,6 +26,7 @@ jobs:
   github_release:
     name: "Github Release"
     needs: build
+    environment: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
