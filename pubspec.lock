@@ -525,10 +525,10 @@ packages:
     dependency: "direct main"
     description:
       name: stash
-      sha256: "5d42c73727336e9ea8cef3b028355fc4728b4cdad643444d74e432d0289cdb7d"
+      sha256: c1482f64dcaa9b2d9eb112106ef018aad49adb284e1ba371c892c2ad9f99fc12
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "5.2.0"
   stash_file:
     dependency: transitive
     description:
@@ -605,10 +605,10 @@ packages:
     dependency: transitive
     description:
       name: uuid
-      sha256: cd210a09f7c18cbe5a02511718e0334de6559871052c90a90c0cca46a4aa81c8
+      sha256: "814e9e88f21a176ae1359149021870e87f7cddaf633ab678a5d2b0bff7fd1ba8"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.3"
+    version: "4.4.0"
   watcher:
     dependency: transitive
     description:

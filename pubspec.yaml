@@ -20,7 +20,7 @@ dependencies:
   http: ^1.2.1
   json_annotation: ^4.8.1
   path: ^1.9.0
-  stash: ^5.1.0
+  stash: ^5.2.0
 
 dev_dependencies:
   build_runner: ^2.4.9
