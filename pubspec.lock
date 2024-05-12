@@ -13,10 +13,10 @@ packages:
     dependency: "direct main"
     description:
       name: alfred_workflow
-      sha256: "34b02327f124a6bcc306db4d1ed1eeffa7988b8679342471e7a1aae3a8af39fe"
+      sha256: a2e64473d7289f92cbbda29004ec58284c1ff49ae365f876ce98b704eecc7bca
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.1"
+    version: "1.0.1"
   algolia_client_core:
     dependency: transitive
     description:
@@ -349,18 +349,18 @@ packages:
     dependency: "direct main"
     description:
       name: json_annotation
-      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      sha256: "1ce844379ca14835a50d2f019a3099f419082cfdd231cd86a142af94dd5c6bb1"
       url: "https://pub.dev"
     source: hosted
-    version: "4.8.1"
+    version: "4.9.0"
   json_serializable:
     dependency: "direct dev"
     description:
       name: json_serializable
-      sha256: aa1f5a8912615733e0fdc7a02af03308933c93235bdc8d50d0b0c8a8ccb0b969
+      sha256: ea1432d167339ea9b5bb153f0571d0039607a873d6e04e0117af043f14a1fd4b
       url: "https://pub.dev"
     source: hosted
-    version: "6.7.1"
+    version: "6.8.0"
   lints:
     dependency: "direct dev"
     description:
@@ -525,18 +525,18 @@ packages:
     dependency: "direct main"
     description:
       name: stash
-      sha256: "5d42c73727336e9ea8cef3b028355fc4728b4cdad643444d74e432d0289cdb7d"
+      sha256: c1482f64dcaa9b2d9eb112106ef018aad49adb284e1ba371c892c2ad9f99fc12
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "5.2.0"
   stash_file:
     dependency: transitive
     description:
       name: stash_file
-      sha256: "207cf47bc13dd3a9fd4f2be7a2e6612ad89801c5674f429f50f5e8ecdcb23de0"
+      sha256: f2a68f2e7dcf7ca8f2b617959fca305983d5557355ede43cb15601e9533b495b
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "5.2.0"
   stream_channel:
     dependency: transitive
     description:
@@ -605,10 +605,10 @@ packages:
     dependency: transitive
     description:
       name: uuid
-      sha256: cd210a09f7c18cbe5a02511718e0334de6559871052c90a90c0cca46a4aa81c8
+      sha256: "814e9e88f21a176ae1359149021870e87f7cddaf633ab678a5d2b0bff7fd1ba8"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.3"
+    version: "4.4.0"
   watcher:
     dependency: transitive
     description:
