@@ -1,14 +1,7 @@
 part of 'main.dart';
 
-final AlfredWorkflow _workflow = AlfredWorkflow(
-  cache: AlfredCache<AlfredItems>(
-    fromEncodable: (Map<String, dynamic> json) => AlfredItems.fromJson(json),
-    maxEntries: 1024,
-    expiryPolicy: const CreatedExpiryPolicy(
-      Duration(days: 7),
-    ),
-  ),
-)..disableAlfredSmartResultOrdering = true;
+final AlfredWorkflow _workflow = AlfredWorkflow()
+  ..disableAlfredSmartResultOrdering = true;
 
 final AlfredUpdater _updater = AlfredUpdater(
   githubRepositoryUrl: Env.githubRepositoryUrl,
@@ -30,7 +23,7 @@ Future<void> _performSearch(String query) async {
   try {
     final SearchResponse searchResponse = await AlgoliaSearch.query(query);
 
-    if (searchResponse.nbHits > 0) {
+    if ((searchResponse.nbHits ?? 0) > 0) {
       final AlfredItems items = AlfredItems(
         await Future.wait(searchResponse.hits
             .map((Hit hit) => SearchResult.fromJson(

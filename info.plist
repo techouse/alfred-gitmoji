@@ -416,7 +416,96 @@ Either press `⌘Y` to Quick Look the result, or press `&lt;enter&gt;` copy it t
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
-	<array/>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<true/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Enable (Alfred 5.5+ only)</string>
+			</dict>
+			<key>description</key>
+			<string>Presents results from previous run when enabled and not expired. Mutually exclusive with File Cache.</string>
+			<key>label</key>
+			<string>Use Alfred Cache</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>use_alfred_cache</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Enable (Recommended for Alfred 5 or older)</string>
+			</dict>
+			<key>description</key>
+			<string>Presents results from previous run when enabled and not expired. Mutually exclusive with Alfred Cache.</string>
+			<key>label</key>
+			<string>Use File Cache</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>use_file_cache</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>defaultvalue</key>
+				<integer>86400</integer>
+				<key>markercount</key>
+				<integer>24</integer>
+				<key>maxvalue</key>
+				<integer>86400</integer>
+				<key>minvalue</key>
+				<integer>5</integer>
+				<key>onlystoponmarkers</key>
+				<false/>
+				<key>showmarkers</key>
+				<false/>
+			</dict>
+			<key>description</key>
+			<string>Time to live for cached data is defined as a number of seconds between 5 and 86400 (i.e. 24 hours).</string>
+			<key>label</key>
+			<string>Cache TTL</string>
+			<key>type</key>
+			<string>slider</string>
+			<key>variable</key>
+			<string>cache_ttl</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>defaultvalue</key>
+				<integer>1280</integer>
+				<key>markercount</key>
+				<integer>8</integer>
+				<key>maxvalue</key>
+				<integer>2048</integer>
+				<key>minvalue</key>
+				<integer>256</integer>
+				<key>onlystoponmarkers</key>
+				<true/>
+				<key>showmarkers</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Maximum File Cache entries</string>
+			<key>label</key>
+			<string>Max File Cache</string>
+			<key>type</key>
+			<string>slider</string>
+			<key>variable</key>
+			<string>file_cache_max_entries</string>
+		</dict>
+	</array>
 	<key>version</key>
 	<string></string>
 	<key>webaddress</key>
