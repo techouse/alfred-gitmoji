@@ -40,8 +40,8 @@ void main(List<String> arguments) {
 
       _verbose = args['verbose'];
 
-      final Map<String, AlfredUserConfiguration>? userDefaults =
-          await _workflow.getUserDefaults();
+      final Map<String, AlfredUserConfiguration>? userDefaults = await _workflow
+          .getUserDefaults();
 
       final AlfredUserConfigurationCheckBox? useFileCache =
           userDefaults?[UserConfigKey.useFileCache.toString()]
@@ -59,8 +59,10 @@ void main(List<String> arguments) {
           userDefaults?[UserConfigKey.cacheTtl.toString()]
               as AlfredUserConfigurationNumberSlider?;
 
-      final String query =
-          args['query'].replaceAll(RegExp(r'\s+'), ' ').trim().toLowerCase();
+      final String query = args['query']
+          .replaceAll(RegExp(r'\s+'), ' ')
+          .trim()
+          .toLowerCase();
 
       if (_verbose) stdout.writeln('Query: "$query"');
 

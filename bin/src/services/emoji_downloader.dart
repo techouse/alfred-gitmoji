@@ -4,10 +4,8 @@ import 'package:http/http.dart' as http show get, Response;
 import 'package:path/path.dart' as path show dirname, join;
 
 class EmojiDownloader {
-  const EmojiDownloader({
-    required this.emoji,
-    String? directoryPath,
-  }) : _directoryPath = directoryPath;
+  const EmojiDownloader({required this.emoji, String? directoryPath})
+    : _directoryPath = directoryPath;
 
   final String emoji;
   final String? _directoryPath;
@@ -16,12 +14,12 @@ class EmojiDownloader {
     final String fileName = '${emoji.runes.first.toRadixString(16)}.png';
     final String filePath =
         _directoryPath != null && await Directory(_directoryPath).exists()
-            ? path.join(_directoryPath, fileName)
-            : path.join(
-                path.dirname(Platform.script.toFilePath()),
-                'image_cache',
-                fileName,
-              );
+        ? path.join(_directoryPath, fileName)
+        : path.join(
+            path.dirname(Platform.script.toFilePath()),
+            'image_cache',
+            fileName,
+          );
     final File file = File(filePath);
 
     if (!await file.exists()) {
