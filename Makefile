@@ -53,10 +53,18 @@ licenses:
 	cargo-about generate --locked --fail --output-file build/THIRD_PARTY_LICENSES.html about.hbs
 
 package: build-release
-	@VERSION="$$(awk '/^\[package\]$$/ { p = 1; next } p && /^\[/ { exit } p && /^version = / { gsub(/[\"[:space:]]/, "", $$3); print $$3; exit }' Cargo.toml)"; \
+	@set -euo pipefail; \
+	VERSION="$$(awk '/^\[package\]$$/ { p = 1; next } p && /^\[/ { exit } p && /^version = / { gsub(/[\"[:space:]]/, "", $$3); print $$3; exit }' Cargo.toml)"; \
 	WORKFLOW_NAME="$${WORKFLOW_NAME:-Gitmoji}"; \
-	(cd build/dist && zip -qr "../$${WORKFLOW_NAME}-v$${VERSION}.alfredworkflow" . -x '.env' 'image_cache/*' '*_cache/*'); \
-	echo "Created build/$${WORKFLOW_NAME}-v$${VERSION}.alfredworkflow"
+	ARCHIVE="build/$${WORKFLOW_NAME}-v$${VERSION}.alfredworkflow"; \
+	TEMP_ARCHIVE="$${ARCHIVE}.tmp.zip"; \
+	trap 'rm -f "$$TEMP_ARCHIVE"' EXIT; \
+	rm -f "$$TEMP_ARCHIVE"; \
+	(cd build/dist && zip -qr "../$${WORKFLOW_NAME}-v$${VERSION}.alfredworkflow.tmp.zip" . \
+		-x '.env' 'image_cache/*' '*_cache/*' '*_cache_keys.json'); \
+	mv -f "$$TEMP_ARCHIVE" "$$ARCHIVE"; \
+	trap - EXIT; \
+	echo "Created $$ARCHIVE"
 
 version-check:
 	./scripts/version-check.sh
