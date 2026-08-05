@@ -29,7 +29,7 @@ if [[ "$MANIFEST_VERSION" != "$LOCK_VERSION" ]]; then
   exit 1
 fi
 
-TAG_NAME="${1:-${GITHUB_REF_NAME:-}}"
+TAG_NAME="${1:-}"
 if [[ -n "$TAG_NAME" ]]; then
   TAG_VERSION="${TAG_NAME#v}"
   if [[ "$MANIFEST_VERSION" != "$TAG_VERSION" ]]; then
