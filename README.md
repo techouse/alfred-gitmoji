@@ -42,3 +42,13 @@ Kudos to [leolabs/alfred-gitmoji](https://github.com/leolabs/alfred-gitmoji) for
 
 The gitmoji index was built from [carloscuesta/gitmoji](https://github.com/carloscuesta/gitmoji). The displayed emoji images are from [joypixels/emoji-assets](https://github.com/joypixels/emoji-assets).
 The lightning fast search is powered by [Algolia](https://www.algolia.com) using the _same_ index as [gimoji.dev](https://gitmoji.dev).
+
+## Development
+
+The workflow is implemented in Rust and requires Rust 1.88 or newer. Copy `.env.example` to `.env` and fill in the three Algolia search values, then run a local query with:
+
+```sh
+cargo run -- -q bug
+```
+
+Run the complete local check suite with `make ci`. To build the release directory or create an installable workflow for the current architecture, install `cargo-about` with `cargo install cargo-about --locked --features cli`, then run `make build-release` or `make package`. GitHub releases contain one universal binary supporting Apple Silicon from macOS 11 and Intel from macOS 10.15. Release builds embed the Algolia values from the environment or `.env`; runtime environment values continue to take precedence for local overrides. The `.env` file is never copied into a package.
