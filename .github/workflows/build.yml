@@ -97,16 +97,17 @@ jobs:
           lipo -info build/dist/workflow | grep -q 'x86_64'
           xcrun vtool -arch arm64 -show-build build/dist/workflow | grep -Eq "minos[[:space:]]+$ARM64_DEPLOYMENT_TARGET([.]0)?$"
           xcrun vtool -arch x86_64 -show-build build/dist/workflow | grep -Eq "minos[[:space:]]+$X86_64_DEPLOYMENT_TARGET([.]0)?$"
+          SMOKE_DIR=$(mktemp -d "${RUNNER_TEMP}/gitmoji-smoke.XXXXXX")
+          trap 'rm -rf "$SMOKE_DIR"' EXIT
+          cp -R build/dist/. "$SMOKE_DIR/"
+          (
+            cd "$SMOKE_DIR"
+            ./workflow -q bug > smoke.json 2> smoke.stderr
+            jq -e '.items | length > 0' smoke.json > /dev/null
+          )
           test ! -e build/dist/.env
           test ! -e build/dist/image_cache
           test -z "$(find build/dist -maxdepth 1 -name '*_cache*' -print -quit)"
-          (
-            cd build/dist
-            ./workflow -q bug > smoke.json 2> smoke.stderr
-            jq -e '.items | length > 0' smoke.json > /dev/null
-            rm -f smoke.json smoke.stderr
-            rm -rf image_cache
-          )
 
       - name: Install the Apple certificate
         env:
@@ -190,7 +191,8 @@ jobs:
         run: |
           set -euo pipefail
           PACKAGE_NAME="${WORKFLOW_NAME}-v${VERSION}"
-          (cd build/dist && zip -qr "../${PACKAGE_NAME}.alfredworkflow" . -x '.env' 'image_cache/*' '*_cache/*')
+          (cd build/dist && zip -qr "../${PACKAGE_NAME}.alfredworkflow" . \
+            -x '.env' 'image_cache/*' '*_cache/*' '*_cache_keys.json')
           echo "ARTIFACT_NAME=${PACKAGE_NAME}-universal" >> "$GITHUB_ENV"
           echo "ARTIFACT_PATH=build/${PACKAGE_NAME}.alfredworkflow" >> "$GITHUB_ENV"
 
