@@ -76,7 +76,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install MSRV
-        uses: dtolnay/rust-toolchain@2c7215f132e9ebf062739d9130488b56d53c060c
+        uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ needs.msrv-meta.outputs.msrv }}
 
