@@ -63,6 +63,22 @@ fn validate_png_rejects_non_png_content() {
 }
 
 #[test]
+fn cache_uses_platform_verifier_and_image_timeouts() -> Result<()> {
+    let directory = tempfile::tempdir()?;
+    let cache = EmojiImageCache::new(directory.path(), false)?;
+    let timeouts = cache.agent.config().timeouts();
+
+    assert!(matches!(
+        cache.agent.config().tls_config().root_certs(),
+        ureq::tls::RootCerts::PlatformVerifier
+    ));
+    assert_eq!(timeouts.connect, Some(CONNECT_TIMEOUT));
+    assert_eq!(timeouts.global, Some(IMAGE_TIMEOUT));
+
+    Ok(())
+}
+
+#[test]
 fn resolve_many_limits_concurrency_and_preserves_result_order() -> Result<()> {
     let directory = tempfile::tempdir()?;
     let active = Arc::new(AtomicUsize::new(0));

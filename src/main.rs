@@ -37,6 +37,9 @@ fn main() -> ExitCode {
     let (options, exit_code) = match populate_workflow(&mut workflow, &cli) {
         Ok(()) => (update_render_options(&cli), ExitCode::SUCCESS),
         Err(error) => {
+            if cli.verbose {
+                eprintln!("{error:#}");
+            }
             let _ = workflow.clear_items();
             if let Err(add_error) = workflow.add_item(Item::new(error.to_string())) {
                 eprintln!("failed to render workflow error: {add_error}");

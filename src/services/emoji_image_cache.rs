@@ -13,6 +13,8 @@ use url::Url;
 
 use crate::models::SearchResult;
 
+use super::http::platform_agent;
+
 const IMAGE_CACHE_URL: &str =
     "https://raw.githubusercontent.com/joypixels/emoji-assets/master/png/32/";
 const MAX_WORKERS: usize = 8;
@@ -45,11 +47,7 @@ pub struct EmojiImageCache {
 impl EmojiImageCache {
     /// Creates an image cache that downloads JoyPixels PNGs into directory.
     pub fn new(directory: impl Into<PathBuf>, verbose: bool) -> Result<Self> {
-        let agent: Agent = Agent::config_builder()
-            .timeout_connect(Some(CONNECT_TIMEOUT))
-            .timeout_global(Some(IMAGE_TIMEOUT))
-            .build()
-            .into();
+        let agent = platform_agent(CONNECT_TIMEOUT, IMAGE_TIMEOUT);
         let pool = ThreadPoolBuilder::new()
             .num_threads(MAX_WORKERS)
             .thread_name(|index| format!("gitmoji-image-{index}"))
@@ -232,7 +230,7 @@ impl EmojiImageCache {
         fetcher: Arc<TestFetcher>,
         diagnostic: Arc<Diagnostic>,
     ) -> Result<Self> {
-        let agent: Agent = Agent::config_builder().build().into();
+        let agent = platform_agent(CONNECT_TIMEOUT, IMAGE_TIMEOUT);
         let pool = ThreadPoolBuilder::new()
             .num_threads(workers)
             .build()
