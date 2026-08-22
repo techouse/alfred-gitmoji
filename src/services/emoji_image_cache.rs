@@ -16,7 +16,7 @@ use crate::models::SearchResult;
 use super::http::platform_agent;
 
 const IMAGE_CACHE_URL: &str =
-    "https://raw.githubusercontent.com/joypixels/emoji-assets/master/png/32/";
+    "https://raw.githubusercontent.com/joypixels/emoji-assets/master/png/64/";
 const MAX_WORKERS: usize = 8;
 const MAX_IMAGE_BYTES: u64 = 1024 * 1024;
 const CONNECT_TIMEOUT: Duration = Duration::from_secs(2);
