@@ -53,3 +53,27 @@ fn file_cache_hit_bypasses_algolia_and_image_resolution() -> Result<()> {
 
     Ok(())
 }
+
+#[test]
+fn runtime_error_does_not_enter_file_cache() -> Result<()> {
+    let directory = tempfile::tempdir()?;
+    let mut workflow = Workflow::with_file_cache(FileCache::with_path(directory.path()));
+    workflow.set_cache_key(Some("transient-query"));
+    workflow.add_item(Item::new("stale result"))?;
+    let error = anyhow!("transient search failure");
+
+    replace_items_with_runtime_error(&mut workflow, &error)?;
+
+    assert!(workflow.cache_key().is_none());
+    assert_eq!(
+        workflow.get_items()?.items()[0].title(),
+        "transient search failure"
+    );
+    Ok(())
+}
+
+#[test]
+fn empty_query_uses_the_all_gitmojis_file_cache_key() -> Result<()> {
+    assert_eq!(file_cache_key(""), "ALL_GITMOJIS");
+    Ok(())
+}
