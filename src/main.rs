@@ -40,8 +40,7 @@ fn main() -> ExitCode {
             if cli.verbose {
                 eprintln!("{error:#}");
             }
-            let _ = workflow.clear_items();
-            if let Err(add_error) = workflow.add_item(Item::new(error.to_string())) {
+            if let Err(add_error) = replace_items_with_runtime_error(&mut workflow, &error) {
                 eprintln!("failed to render workflow error: {add_error}");
                 return ExitCode::from(1);
             }
@@ -55,6 +54,17 @@ fn main() -> ExitCode {
     }
 
     exit_code
+}
+
+fn replace_items_with_runtime_error(
+    workflow: &mut Workflow,
+    error: &anyhow::Error,
+) -> alfred_workflow_rs::Result<()> {
+    if let Err(clear_error) = workflow.clear_items() {
+        eprintln!("failed to clear workflow items: {clear_error}");
+    }
+    workflow.clear_cache_key();
+    workflow.add_item(Item::new(error.to_string()))
 }
 
 fn populate_workflow(workflow: &mut Workflow, cli: &Cli) -> Result<()> {
@@ -117,17 +127,20 @@ fn configure_cache(workflow: &mut Workflow, query: &str) -> Result<()> {
     if use_alfred_cache {
         workflow.set_use_automatic_cache(true);
     } else if use_file_cache {
-        let cache_key = if query.is_empty() {
-            "ALL_GITMOJIS"
-        } else {
-            query
-        };
-        workflow.set_cache_key(Some(cache_key));
+        workflow.set_cache_key(Some(file_cache_key(query)));
         workflow.set_max_cache_entries(max_entries.and_then(|value| usize::try_from(value).ok()));
     }
     workflow.set_cache_time_to_live(cache_ttl.and_then(|value| u64::try_from(value).ok()));
 
     Ok(())
+}
+
+fn file_cache_key(query: &str) -> &str {
+    if query.is_empty() {
+        "ALL_GITMOJIS"
+    } else {
+        query
+    }
 }
 
 fn checkbox_value(
