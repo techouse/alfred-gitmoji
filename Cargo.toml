@@ -18,4 +18,5 @@ ureq = { version = "3.3", features = ["platform-verifier"] }
 url = "2.5"
 
 [dev-dependencies]
+flate2 = "1.1"
 tempfile = "3.10"
