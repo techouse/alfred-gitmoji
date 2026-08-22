@@ -24,7 +24,7 @@ build-release:
 	@set -euo pipefail; \
 	missing_names=(); \
 	for variable_name in ALGOLIA_APPLICATION_ID ALGOLIA_SEARCH_ONLY_API_KEY ALGOLIA_SEARCH_INDEX; do \
-		if [[ -z "$${!variable_name:-}" ]]; then \
+		if [[ -z "$${!variable_name+x}" ]]; then \
 			missing_names+=("$$variable_name"); \
 		fi; \
 	done; \
@@ -32,7 +32,11 @@ build-release:
 		dotenv_exports="$$( \
 			set -a; \
 			source ./.env; \
+			dotenv_status=$$?; \
 			set +a; \
+			if (( dotenv_status != 0 )); then \
+				exit "$$dotenv_status"; \
+			fi; \
 			for variable_name in "$${missing_names[@]}"; do \
 				if [[ -n "$${!variable_name:-}" ]]; then \
 					printf '%s=%q\n' "$$variable_name" "$${!variable_name}"; \

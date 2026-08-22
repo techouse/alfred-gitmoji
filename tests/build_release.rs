@@ -144,6 +144,24 @@ fn build_release_preserves_runtime_values_and_fills_missing_values_from_dotenv()
 }
 
 #[test]
+fn build_release_rejects_empty_runtime_values_instead_of_using_dotenv() -> Result<()> {
+    let fixture = Fixture::new()?;
+    fs::write(
+        fixture.directory.path().join(".env"),
+        "ALGOLIA_APPLICATION_ID=dotenv-app\nALGOLIA_SEARCH_ONLY_API_KEY=dotenv-key\nALGOLIA_SEARCH_INDEX=dotenv-index\n",
+    )?;
+
+    let output = fixture
+        .command()
+        .env("ALGOLIA_APPLICATION_ID", "")
+        .output()?;
+
+    assert!(!output.status.success());
+    assert!(!fixture.record_path.exists());
+    Ok(())
+}
+
+#[test]
 fn build_release_fails_on_malformed_dotenv_when_runtime_is_incomplete() -> Result<()> {
     let fixture = Fixture::new()?;
     fs::write(
@@ -158,6 +176,21 @@ fn build_release_fails_on_malformed_dotenv_when_runtime_is_incomplete() -> Resul
     String::from_utf8(output.stderr)
         .context("make stderr must be valid UTF-8")
         .map(|_| ())
+}
+
+#[test]
+fn build_release_fails_when_dotenv_fails_after_setting_values() -> Result<()> {
+    let fixture = Fixture::new()?;
+    fs::write(
+        fixture.directory.path().join(".env"),
+        "ALGOLIA_APPLICATION_ID=dotenv-app\nALGOLIA_SEARCH_ONLY_API_KEY=dotenv-key\nALGOLIA_SEARCH_INDEX=dotenv-index\nfalse\n",
+    )?;
+
+    let output = fixture.command().output()?;
+
+    assert!(!output.status.success());
+    assert!(!fixture.record_path.exists());
+    Ok(())
 }
 
 #[test]
